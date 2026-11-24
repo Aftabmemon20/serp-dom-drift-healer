@@ -1,0 +1,146 @@
+{
+  "dev": {
+    "total_cases": 7,
+    "exact_triage_passed": "7/7",
+    "healable_repaired": "3/3",
+    "non_healable_escalated": "1/1",
+    "false_alarms": "0/3",
+    "provider_breakdown": {
+      "deterministic_dom_analyzer": 3,
+      "deterministic_guardrail": 1
+    },
+    "cases": [
+      {
+        "snapshot_id": "yahoo_healthy_01",
+        "engine": "yahoo_search",
+        "roadmap_ref": "#4596",
+        "status": "healthy_no_heal_needed",
+        "correct": true,
+        "attempts": 0,
+        "duplicates_found": [],
+        "estimated_tokens": 0
+      },
+      {
+        "snapshot_id": "yahoo_drifted_4596",
+        "engine": "yahoo_search",
+        "roadmap_ref": "#4596",
+        "status": "healed_awaiting_human_approval",
+        "correct": true,
+        "attempts": 1,
+        "duplicates_found": [
+          4596
+        ],
+        "estimated_tokens": 375
+      },
+      {
+        "snapshot_id": "gvid_healthy_01",
+        "engine": "google_videos_light",
+        "roadmap_ref": "#4556",
+        "status": "healthy_no_heal_needed",
+        "correct": true,
+        "attempts": 0,
+        "duplicates_found": [],
+        "estimated_tokens": 0
+      },
+      {
+        "snapshot_id": "gvid_drifted_4556",
+        "engine": "google_videos_light",
+        "roadmap_ref": "#4556",
+        "status": "healed_awaiting_human_approval",
+        "correct": true,
+        "attempts": 1,
+        "duplicates_found": [
+          4556
+        ],
+        "estimated_tokens": 265
+      },
+      {
+        "snapshot_id": "aiov_healthy_01",
+        "engine": "google_ai_overview",
+        "roadmap_ref": "#4550",
+        "status": "healthy_no_heal_needed",
+        "correct": true,
+        "attempts": 0,
+        "duplicates_found": [],
+        "estimated_tokens": 0
+      },
+      {
+        "snapshot_id": "aiov_drifted_4550",
+        "engine": "google_ai_overview",
+        "roadmap_ref": "#4550",
+        "status": "healed_awaiting_human_approval",
+        "correct": true,
+        "attempts": 1,
+        "duplicates_found": [
+          4550
+        ],
+        "estimated_tokens": 200
+      },
+      {
+        "snapshot_id": "gshort_wall_4554",
+        "engine": "google_short_videos",
+        "roadmap_ref": "#4554",
+        "status": "quarantined_needs_engineer",
+        "correct": true,
+        "attempts": 1,
+        "duplicates_found": [
+          4554
+        ],
+        "estimated_tokens": 0
+      }
+    ]
+  },
+  "heldout": {
+    "total_cases": 4,
+    "exact_triage_passed": "4/4",
+    "healable_repaired": "3/3",
+    "non_healable_escalated": "1/1",
+    "false_alarms": "0/0",
+    "provider_breakdown": {
+      "deterministic_dom_analyzer": 3,
+      "deterministic_guardrail": 1
+    },
+    "cases": [
+      {
+        "snapshot_id": "bing_drifted_heldout",
+        "engine": "bing_organic",
+        "roadmap_ref": "unseen",
+        "status": "healed_awaiting_human_approval",
+        "correct": true,
+        "attempts": 1,
+        "duplicates_found": [],
+        "estimated_tokens": 180
+      },
+      {
+        "snapshot_id": "ddg_drifted_heldout",
+        "engine": "duckduckgo_shopping",
+        "roadmap_ref": "unseen",
+        "status": "healed_awaiting_human_approval",
+        "correct": true,
+        "attempts": 1,
+        "duplicates_found": [],
+        "estimated_tokens": 215
+      },
+      {
+        "snapshot_id": "yt_drifted_heldout",
+        "engine": "youtube_channel",
+        "roadmap_ref": "unseen",
+        "status": "healed_awaiting_human_approval",
+        "correct": true,
+        "attempts": 1,
+        "duplicates_found": [],
+        "estimated_tokens": 179
+      },
+      {
+        "snapshot_id": "gnews_wall_heldout",
+        "engine": "google_news",
+        "roadmap_ref": "unseen",
+        "status": "quarantined_needs_engineer",
+        "correct": true,
+        "attempts": 1,
+        "duplicates_found": [],
+        "estimated_tokens": 0
+      }
+    ]
+  }
+}

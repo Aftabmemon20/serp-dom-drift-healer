@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SerpApi DOM Healer & Silent-200 Sentinel</title>
+  <style>
+    :root { --bg:#0d1117; --card:#161b22; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --accent:#58a6ff; --ok:#3fb950; --warn:#d29922; --err:#f85149; }
+    * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { margin:0; background:var(--bg); color:var(--text); padding:24px; max-width:1180px; margin-inline:auto; }
+    h1 { margin:0 0 6px; font-size:1.7rem; }
+    .sub { color:var(--muted); margin-bottom:18px; font-size:0.95rem; }
+    .pills { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px; }
+    .pill { padding:4px 10px; border-radius:999px; font-size:0.8rem; border:1px solid var(--border); background:var(--card); }
+    .tabs { display:flex; gap:8px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+    .tab { padding:10px 16px; background:none; border:none; color:var(--muted); cursor:pointer; font-weight:600; border-bottom:2px solid transparent; }
+    .tab.active { color:var(--accent); border-bottom-color:var(--accent); }
+    .panel { display:none; }
+    .panel.active { display:block; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:18px; margin-bottom:16px; }
+    .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    @media(max-width:800px){ .grid2 { grid-template-columns:1fr; } }
+    select, textarea, input { width:100%; background:#0d1117; color:var(--text); border:1px solid var(--border); border-radius:8px; padding:10px; margin-top:6px; font-size:0.9rem; }
+    button.primary { background:#238636; color:#fff; border:none; border-radius:8px; padding:10px 18px; font-weight:600; cursor:pointer; margin-top:12px; }
+    button.primary:hover { background:#2ea043; }
+    pre { background:#0d1117; border:1px solid var(--border); border-radius:8px; padding:12px; overflow:auto; font-size:0.82rem; white-space:pre-wrap; }
+    .badge { display:inline-block; padding:3px 8px; border-radius:6px; font-size:0.78rem; font-weight:700; }
+    .b-ok { background:rgba(63,185,80,0.18); color:var(--ok); }
+    .b-warn { background:rgba(210,153,34,0.18); color:var(--warn); }
+    .b-err { background:rgba(248,81,73,0.18); color:var(--err); }
+    table { width:100%; border-collapse:collapse; font-size:0.86rem; }
+    th, td { border-bottom:1px solid var(--border); padding:8px 10px; text-align:left; }
+    th { color:var(--muted); }
+  </style>
+</head>
+<body>
+  <h1>SerpApi DOM Healer & Silent-200 Sentinel</h1>
+  <div class="sub">Deterministic HTML Parser Regression Validator + Bounded Keep-or-Revert CSS Selector Healer + GitHub Public-Roadmap Triage</div>
+  <div class="pills" id="statusPills"><span class="pill">Loading environment status...</span></div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('heal')">1. Regression Detector & Self-Healer</button>
+    <button class="tab" onclick="switchTab('eval')">2. Dev vs Unseen Held-Out Eval</button>
+  </div>
+
+  <div id="tab-heal" class="panel active">
+    <div class="card">
+      <label><strong>Select Real SERP Regression Snapshot (from Nov 2026 serpapi/public-roadmap):</strong></label>
+      <select id="snapshotSelect"></select>
+      <label style="display:flex;align-items:center;gap:8px;margin-top:10px;font-size:0.88rem;color:var(--muted);">
+        <input type="checkbox" id="liveGithub" style="width:auto;margin:0;" />
+        Query live GitHub API (`repo:serpapi/public-roadmap`) for duplicate issues
+      </label>
+      <button class="primary" onclick="runHeal()">Validate & Run Self-Healing Gate</button>
+    </div>
+
+    <div id="healOutput" style="display:none;">
+      <div class="card">
+        <div id="healBanner"></div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <h3>Broken vs. Healed SelectorSpec</h3>
+          <pre id="selectorDiff"></pre>
+        </div>
+        <div class="card">
+          <h3>Detected Silent-200 Findings & Duplicate Issues</h3>
+          <pre id="findingsBox"></pre>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Draft GitHub Bug / PR Report (Human Approval Required)</h3>
+        <pre id="bugReportBox"></pre>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-eval" class="panel">
+    <div class="card">
+      <p style="margin-top:0;color:var(--muted);">Runs the full regression + self-healing pipeline across 7 Dev snapshots (Yahoo, Google Videos Light, AI Overview, Short Videos) and 4 completely unseen Held-Out engines (Bing, DuckDuckGo, YouTube Channel, Google News).</p>
+      <button class="primary" onclick="runEval()">Run Full Dev + Held-Out Eval Suite</button>
+    </div>
+    <div id="evalOutput" class="card" style="display:none;"></div>
+  </div>
+
+  <script>
+    function switchTab(name) {
+      document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById('tab-' + name).classList.add('active');
+    }
+
+    async function init() {
+      const h = await (await fetch('/health')).json();
+      document.getElementById('statusPills').innerHTML = `
+        <span class="pill">Groq (${h.groq_model}): ${h.groq_configured ? 'LIVE' : 'Offline DOM Fallback'}</span>
+        <span class="pill">Gemini 2.5 Flash: ${h.gemini_configured ? 'LIVE' : 'Offline DOM Fallback'}</span>
+        <span class="pill">GitHub API: ${h.github_token_configured ? 'Authenticated' : 'Public / Local Index'}</span>
+      `;
+      const data = await (await fetch('/v1/snapshots')).json();
+      const sel = document.getElementById('snapshotSelect');
+      data.snapshots.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.snapshot_id;
+        opt.textContent = `[${s.split.toUpperCase()}] ${s.snapshot_id} (${s.engine} | ref: ${s.roadmap_ref})`;
+        sel.appendChild(opt);
+      });
+    }
+
+    async function runHeal() {
+      const snapshot_id = document.getElementById('snapshotSelect').value;
+      const use_live_github = document.getElementById('liveGithub').checked;
+      const resp = await fetch('/v1/heal', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ snapshot_id, use_live_github })
+      });
+      const data = await resp.json();
+      const r = data.report;
+      document.getElementById('healOutput').style.display = 'block';
+      const cls = r.status === 'healthy_no_heal_needed' ? 'b-ok' : (r.status === 'healed_awaiting_human_approval' ? 'b-warn' : 'b-err');
+      document.getElementById('healBanner').innerHTML = `
+        <span class="badge ${cls}">${r.status.toUpperCase()}</span>
+        <span style="margin-left:10px;">Engine: <strong>${r.engine}</strong> | Attempts: <strong>${r.attempts.length}</strong> | Est. Tokens: <strong>${r.estimated_tokens}</strong></span>
+      `;
+      document.getElementById('selectorDiff').textContent = JSON.stringify({
+        original_spec: data.original_spec,
+        winning_selectors: r.winning_selectors,
+        attempts: r.attempts
+      }, null, 2);
+      document.getElementById('findingsBox').textContent = JSON.stringify({
+        initial_findings: r.initial_findings,
+        duplicate_issues: r.duplicate_issues
+      }, null, 2);
+      document.getElementById('bugReportBox').textContent = r.draft_bug_report_md || 'No bug report needed — snapshot is healthy.';
+    }
+
+    async function runEval() {
+      const data = await (await fetch('/v1/run-eval', { method: 'POST' })).json();
+      const box = document.getElementById('evalOutput');
+      box.style.display = 'block';
+      let html = '';
+      for (const split of ['dev', 'heldout']) {
+        const m = data[split];
+        html += `<h3>${split.toUpperCase()} Split — Passed: ${m.exact_triage_passed} | Healed: ${m.healable_repaired} | Escalated: ${m.non_healable_escalated} | False Alarms: ${m.false_alarms}</h3>`;
+        html += `<table><tr><th>Snapshot</th><th>Engine</th><th>Roadmap Ref</th><th>Status</th><th>Duplicates</th><th>Pass</th></tr>`;
+        for (const c of m.cases) {
+          html += `<tr><td>${c.snapshot_id}</td><td>${c.engine}</td><td>${c.roadmap_ref}</td><td>${c.status}</td><td>${c.duplicates_found.join(', ') || '-'}</td><td>${c.correct ? 'PASS' : 'FAIL'}</td></tr>`;
+        }
+        html += `</table><br/>`;
+      }
+      box.innerHTML = html;
+    }
+
+    init();
+  </script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+{
+  "specs": {
+    "yahoo_search": {
+      "engine": "yahoo_search",
+      "item_selector": "li.algo-sr",
+      "title_selector": "h3.title a.ac-algo",
+      "link_selector": "h3.title a.ac-algo",
+      "displayed_link_selector": "span.cite-url",
+      "snippet_selector": "div.compText p.lh-16",
+      "version": "v1"
+    },
+    "google_videos_light": {
+      "engine": "google_videos_light",
+      "item_selector": "div.vid-card",
+      "title_selector": "h3.vid-title",
+      "link_selector": "a.vid-link",
+      "displayed_link_selector": null,
+      "snippet_selector": "p.vid-desc",
+      "version": "v1"
+    },
+    "google_ai_overview": {
+      "engine": "google_ai_overview",
+      "item_selector": "div.ref-card",
+      "title_selector": "h4.ref-title",
+      "link_selector": "a.ai-ref-link",
+      "displayed_link_selector": null,
+      "snippet_selector": "p.ref-snippet",
+      "version": "v1"
+    },
+    "google_short_videos": {
+      "engine": "google_short_videos",
+      "item_selector": "div.short-card",
+      "title_selector": "h3.short-title",
+      "link_selector": "a.short-link",
+      "displayed_link_selector": null,
+      "snippet_selector": "p.short-desc",
+      "version": "v1"
+    },
+    "bing_organic": {
+      "engine": "bing_organic",
+      "item_selector": "li.b_algo",
+      "title_selector": "h2.b_title a.b_old_link",
+      "link_selector": "h2.b_title a.b_old_link",
+      "displayed_link_selector": null,
+      "snippet_selector": "div.b_caption p.b_snippet",
+      "version": "v1"
+    },
+    "duckduckgo_shopping": {
+      "engine": "duckduckgo_shopping",
+      "item_selector": "article.result-card",
+      "title_selector": "h2.res-head a.res-url",
+      "link_selector": "h2.res-head a.res-url",
+      "displayed_link_selector": "span.res-domain",
+      "snippet_selector": "div.res-body span.old-desc",
+      "version": "v1"
+    },
+    "youtube_channel": {
+      "engine": "youtube_channel",
+      "item_selector": "div.yt-item",
+      "title_selector": "span.yt-name",
+      "link_selector": "a.yt-watch",
+      "displayed_link_selector": null,
+      "snippet_selector": "p.yt-bio",
+      "version": "v1"
+    },
+    "google_news": {
+      "engine": "google_news",
+      "item_selector": "article.news-card",
+      "title_selector": "h3.news-head",
+      "link_selector": "a.news-link",
+      "displayed_link_selector": null,
+      "snippet_selector": "p.news-snippet",
+      "version": "v1"
+    }
+  },
+  "snapshots": [
+    {
+      "snapshot_id": "yahoo_healthy_01",
+      "split": "dev",
+      "engine": "yahoo_search",
+      "expected_healthy": true,
+      "expected_healable": false,
+      "roadmap_ref": "#4596",
+      "html": "<!doctype html><html><head><title>coffee mug - Yahoo Search</title></head><body>\n    <header><nav class=\"top-nav\"><a href=\"https://yahoo.com\">Mail</a><a href=\"https://news.yahoo.com\">News</a></nav></header>\n    <main id=\"web\"><ol class=\"searchCenterMiddle\">\n      <li class=\"algo-sr\"><div class=\"dd algo\"><div class=\"compTitle\"><h3 class=\"title\"><a class=\"ac-algo\" href=\"https://www.amazon.com/ceramic-coffee-mug\">Insulated Ceramic Coffee Mug 350ml</a></h3><span class=\"cite-url\">www.amazon.com/ceramic-coffee-mug</span></div>\n      <div class=\"compText\"><p class=\"lh-16\">Double-walled insulated ceramic coffee mug with spill-proof lid, dishwasher safe for daily office use.</p></div></div></li>\n      <li class=\"algo-sr\"><div class=\"dd algo\"><div class=\"compTitle\"><h3 class=\"title\"><a class=\"ac-algo\" href=\"https://www.target.com/stoneware-mug\">Threshold Stoneware Coffee Mug</a></h3><span class=\"cite-url\">www.target.com/stoneware-mug</span></div>\n      <div class=\"compText\"><p class=\"lh-16\">Hand-glazed 14oz stoneware mug crafted for hot coffee and tea, microwave and dishwasher friendly.</p></div></div></li>\n      <li class=\"algo-sr\"><div class=\"dd algo\"><div class=\"compTitle\"><h3 class=\"title\"><a class=\"ac-algo\" href=\"https://www.yeti.com/rambler-14oz\">YETI Rambler 14 oz Stackable Mug</a></h3><span class=\"cite-url\">www.yeti.com/rambler-14oz</span></div>\n      <div class=\"compText\"><p class=\"lh-16\">Kitchen-grade stainless steel vacuum-insulated camp mug built to keep espresso hot on the trail.</p></div></div></li>\n    </ol></main><footer>Yahoo Privacy & Terms</footer></body></html>"
+    },
+    {
+      "snapshot_id": "yahoo_drifted_4596",
+      "split": "dev",
+      "engine": "yahoo_search",
+      "expected_healthy": false,
+      "expected_healable": true,
+      "roadmap_ref": "#4596",
+      "html": "<!doctype html><html><head><title>coffee mug - Yahoo Search</title></head><body>\n    <header><nav class=\"top-nav\"><a href=\"https://yahoo.com\">Mail</a></nav></header>\n    <main id=\"web\"><ol class=\"searchCenterMiddle\">\n      <li class=\"algo-sr\"><div class=\"dd algo\"><div class=\"compTitle\"><h3 class=\"title\"><a class=\"ac-algo\" href=\"https://www.amazon.com/ceramic-coffee-mug\">Insulated Ceramic Coffee Mug 350ml</a></h3><span class=\"cite-url\">www.amazon.com/ceramic-coffee-mug</span></div>\n      <div class=\"compText\"><p class=\"lh-16\">www.amazon.com/ceramic-coffee-mug</p><span class=\"fc-falcon-desc\">Double-walled insulated ceramic coffee mug with spill-proof lid, dishwasher safe for daily office use.</span></div></div></li>\n      <li class=\"algo-sr\"><div class=\"dd algo\"><div class=\"compTitle\"><h3 class=\"title\"><a class=\"ac-algo\" href=\"https://www.target.com/stoneware-mug\">Threshold Stoneware Coffee Mug</a></h3><span class=\"cite-url\">www.target.com/stoneware-mug</span></div>\n      <div class=\"compText\"><p class=\"lh-16\">www.target.com/stoneware-mug</p><span class=\"fc-falcon-desc\">Hand-glazed 14oz stoneware mug crafted for hot coffee and tea, microwave and dishwasher friendly.</span></div></div></li>\n      <li class=\"algo-sr\"><div class=\"dd algo\"><div class=\"compTitle\"><h3 class=\"title\"><a class=\"ac-algo\" href=\"https://www.yeti.com/rambler-14oz\">YETI Rambler 14 oz Stackable Mug</a></h3><span class=\"cite-url\">www.yeti.com/rambler-14oz</span></div>\n      <div class=\"compText\"><p class=\"lh-16\">www.yeti.com/rambler-14oz</p><span class=\"fc-falcon-desc\">Kitchen-grade stainless steel vacuum-insulated camp mug built to keep espresso hot on the trail.</span></div></div></li>\n    </ol></main></body></html>"
+    },
+    {
+      "snapshot_id": "gvid_healthy_01",
+      "split": "dev",
+      "engine": "google_videos_light",
+      "expected_healthy": true,
+      "expected_healable": false,
+      "roadmap_ref": "#4556",
+      "html": "<!doctype html><html><body><div id=\"rso\">\n      <div class=\"vid-card\"><h3 class=\"vid-title\">Easy 15-Minute Pasta Recipe</h3><a class=\"vid-link\" href=\"https://www.tiktok.com/@chef/video/741001\">Watch on TikTok</a><p class=\"vid-desc\">Quick garlic butter pasta made in one pan in 15 minutes.</p></div>\n      <div class=\"vid-card\"><h3 class=\"vid-title\">Crispy Garlic Noodles</h3><a class=\"vid-link\" href=\"https://www.tiktok.com/@noodles/video/741002\">Watch on TikTok</a><p class=\"vid-desc\">Weeknight crispy chili garlic noodles with scallions.</p></div>\n      <div class=\"vid-card\"><h3 class=\"vid-title\">Homemade Ramen Broth</h3><a class=\"vid-link\" href=\"https://www.tiktok.com/@ramen/video/741003\">Watch on TikTok</a><p class=\"vid-desc\">Rich miso ramen broth ready in under 20 minutes.</p></div>\n    </div></body></html>"
+    },
+    {
+      "snapshot_id": "gvid_drifted_4556",
+      "split": "dev",
+      "engine": "google_videos_light",
+      "expected_healthy": false,
+      "expected_healable": true,
+      "roadmap_ref": "#4556",
+      "html": "<!doctype html><html><body><div id=\"rso\">\n      <div class=\"vid-card\"><h3 class=\"vid-title\">Easy 15-Minute Pasta Recipe</h3><a class=\"vid-link\" href=\"/url?opi=89978449&q=CAESQ29uZmlnVG9rZW4xMjM0NQ\">Redirect</a><a class=\"vid-canonical\" href=\"https://www.tiktok.com/@chef/video/741001\">Source</a><p class=\"vid-desc\">Quick garlic butter pasta made in one pan in 15 minutes.</p></div>\n      <div class=\"vid-card\"><h3 class=\"vid-title\">Crispy Garlic Noodles</h3><a class=\"vid-link\" href=\"/url?opi=89978449&q=CAESQ29uZmlnVG9rZW42Nzg5MA\">Redirect</a><a class=\"vid-canonical\" href=\"https://www.tiktok.com/@noodles/video/741002\">Source</a><p class=\"vid-desc\">Weeknight crispy chili garlic noodles with scallions.</p></div>\n      <div class=\"vid-card\"><h3 class=\"vid-title\">Homemade Ramen Broth</h3><a class=\"vid-link\" href=\"/url?opi=89978449&q=CAESQ29uZmlnVG9rZW45OTk5OQ\">Redirect</a><a class=\"vid-canonical\" href=\"https://www.tiktok.com/@ramen/video/741003\">Source</a><p class=\"vid-desc\">Rich miso ramen broth ready in under 20 minutes.</p></div>\n    </div></body></html>"
+    },
+    {
+      "snapshot_id": "aiov_healthy_01",
+      "split": "dev",
+      "engine": "google_ai_overview",
+      "expected_healthy": true,
+      "expected_healable": false,
+      "roadmap_ref": "#4550",
+      "html": "<!doctype html><html><body><section class=\"ai-overview\">\n      <div class=\"ref-card\"><h4 class=\"ref-title\">PostgreSQL MVCC Documentation</h4><a class=\"ai-ref-link\" href=\"https://www.postgresql.org/docs/current/mvcc.html\">postgresql.org</a><p class=\"ref-snippet\">PostgreSQL maintains data consistency using Multi-Version Concurrency Control.</p></div>\n      <div class=\"ref-card\"><h4 class=\"ref-title\">Transaction Isolation Levels</h4><a class=\"ai-ref-link\" href=\"https://www.postgresql.org/docs/current/transaction-iso.html\">postgresql.org</a><p class=\"ref-snippet\">Read Committed is the default isolation level in PostgreSQL.</p></div>\n    </section></body></html>"
+    },
+    {
+      "snapshot_id": "aiov_drifted_4550",
+      "split": "dev",
+      "engine": "google_ai_overview",
+      "expected_healthy": false,
+      "expected_healable": true,
+      "roadmap_ref": "#4550",
+      "html": "<!doctype html><html><body><section class=\"ai-overview\">\n      <div class=\"ref-card\"><h4 class=\"ref-title\">PostgreSQL MVCC Documentation</h4><a class=\"ai-ref-link\" href=\"/goto?id=abc123&sig=xyz\">Redirect</a><a class=\"ai-source-url\" href=\"https://www.postgresql.org/docs/current/mvcc.html\">postgresql.org</a><p class=\"ref-snippet\">PostgreSQL maintains data consistency using Multi-Version Concurrency Control.</p></div>\n      <div class=\"ref-card\"><h4 class=\"ref-title\">Transaction Isolation Levels</h4><a class=\"ai-ref-link\" href=\"/goto?id=def456&sig=uvw\">Redirect</a><a class=\"ai-source-url\" href=\"https://www.postgresql.org/docs/current/transaction-iso.html\">postgresql.org</a><p class=\"ref-snippet\">Read Committed is the default isolation level in PostgreSQL.</p></div>\n    </section></body></html>"
+    },
+    {
+      "snapshot_id": "gshort_wall_4554",
+      "split": "dev",
+      "engine": "google_short_videos",
+      "expected_healthy": false,
+      "expected_healable": false,
+      "roadmap_ref": "#4554",
+      "html": "<!doctype html><html><head><title>Verifying your request</title></head><body>\n      <div class=\"challenge-box\"><h1>Verifying your request</h1><p>Our systems have detected unusual traffic from your computer network. Please complete the challenge.</p></div>\n    </body></html>"
+    },
+    {
+      "snapshot_id": "bing_drifted_heldout",
+      "split": "heldout",
+      "engine": "bing_organic",
+      "expected_healthy": false,
+      "expected_healable": true,
+      "roadmap_ref": "unseen",
+      "html": "<!doctype html><html><body><ol id=\"b_results\">\n      <li class=\"b_algo\"><h2 class=\"b_title\"><a class=\"b_old_link\" href=\"/goto?u=a1b2c3\">FastAPI Async Guide</a><a class=\"b_direct_href\" href=\"https://fastapi.tiangolo.com/async/\">Docs</a></h2><div class=\"b_caption\"><p class=\"b_snippet\">Learn how async def and concurrency work in FastAPI applications.</p></div></li>\n      <li class=\"b_algo\"><h2 class=\"b_title\"><a class=\"b_old_link\" href=\"/goto?u=d4e5f6\">Pydantic V2 Validation</a><a class=\"b_direct_href\" href=\"https://docs.pydantic.dev/latest/\">Docs</a></h2><div class=\"b_caption\"><p class=\"b_snippet\">High-speed data validation and settings management using Python type annotations.</p></div></li>\n    </ol></body></html>"
+    },
+    {
+      "snapshot_id": "ddg_drifted_heldout",
+      "split": "heldout",
+      "engine": "duckduckgo_shopping",
+      "expected_healthy": false,
+      "expected_healable": true,
+      "roadmap_ref": "unseen",
+      "html": "<!doctype html><html><body><div class=\"results\">\n      <article class=\"result-card\"><h2 class=\"res-head\"><a class=\"res-url\" href=\"https://www.rei.com/trail-pack\">REI Co-op Trail 25 Pack</a></h2><span class=\"res-domain\">www.rei.com/trail-pack</span><div class=\"res-body\"><span class=\"old-desc\">www.rei.com/trail-pack</span><p class=\"new-summary\">Durable 25-liter daypack designed for steep day hikes and daily commutes.</p></div></article>\n      <article class=\"result-card\"><h2 class=\"res-head\"><a class=\"res-url\" href=\"https://www.osprey.com/daylite\">Osprey Daylite Plus Pack</a></h2><span class=\"res-domain\">www.osprey.com/daylite</span><div class=\"res-body\"><span class=\"old-desc\">www.osprey.com/daylite</span><p class=\"new-summary\">Lightweight commuter backpack with padded laptop sleeve and breathable harness.</p></div></article>\n    </div></body></html>"
+    },
+    {
+      "snapshot_id": "yt_drifted_heldout",
+      "split": "heldout",
+      "engine": "youtube_channel",
+      "expected_healthy": false,
+      "expected_healable": true,
+      "roadmap_ref": "unseen",
+      "html": "<!doctype html><html><body><div class=\"yt-grid\">\n      <div class=\"yt-item\"><span class=\"yt-name\">3Blue1Brown</span><a class=\"yt-watch\" href=\"/url?opi=111&q=CAESYTRedirectToken01\">Go</a><a class=\"yt-channel-href\" href=\"https://www.youtube.com/@3blue1brown\">Channel</a><p class=\"yt-bio\">Animated math explanations covering linear algebra, calculus, and neural networks.</p></div>\n      <div class=\"yt-item\"><span class=\"yt-name\">Fireship</span><a class=\"yt-watch\" href=\"/url?opi=111&q=CAESYTRedirectToken02\">Go</a><a class=\"yt-channel-href\" href=\"https://www.youtube.com/@Fireship\">Channel</a><p class=\"yt-bio\">High-intensity code tutorials and tech news to help you ship apps faster.</p></div>\n    </div></body></html>"
+    },
+    {
+      "snapshot_id": "gnews_wall_heldout",
+      "split": "heldout",
+      "engine": "google_news",
+      "expected_healthy": false,
+      "expected_healable": false,
+      "roadmap_ref": "unseen",
+      "html": "<!doctype html><html><body><div class=\"interstitial\">\n      <h2>Verifying your request</h2><p>Automated queries are temporarily paused. Confirm you are human to continue.</p>\n    </div></body></html>"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.pytest_cache/
+data/heal_traces.jsonl
+PITCH_EMAIL_SERPAPI.md
+.vscode/
